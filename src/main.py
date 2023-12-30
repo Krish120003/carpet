@@ -4,7 +4,7 @@ from PySide6.QtCore import QTimer, QObject
 
 import sys
 
-from utils import handle_screenshot, clean_db
+from utils import handle_screenshot
 
 
 class SystemApp(QObject):
