@@ -1,0 +1,10 @@
+# MacOS Files
+
+.DS_Store
+
+# Data Files
+data/
+*.sqlite3
+
+# Python Files
+*.pyc

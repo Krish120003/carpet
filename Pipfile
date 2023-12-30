@@ -5,8 +5,13 @@ name = "pypi"
 
 [packages]
 pyside6 = "*"
+peewee = "*"
+coloredlogs = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
+
+[scripts]
+start = "python src/main.py"
