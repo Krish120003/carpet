@@ -3,8 +3,13 @@ from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PySide6.QtCore import QTimer, QObject
 
 import sys
+import os
+from pathlib import Path
 
 from utils import handle_screenshot
+
+
+basedir = Path(os.path.dirname(__file__))
 
 
 class SystemApp(QObject):
@@ -22,7 +27,7 @@ class SystemApp(QObject):
         self.is_active = True
 
     def init_system_tray(self):
-        icon = QIcon("icon.png")
+        icon = QIcon(str(basedir / "icon.png"))
 
         # Create the tray
         self.tray = QSystemTrayIcon()
