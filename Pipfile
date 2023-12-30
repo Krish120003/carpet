@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyside6 = "*"
-peewee = "*"
-coloredlogs = "*"
+pyside6 = "6.6.1"
+peewee = "3.17.0"
+coloredlogs = "15.0.1"
 
 [dev-packages]
 
