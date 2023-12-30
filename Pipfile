@@ -4,9 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyside6 = "*"
+pyside6 = "6.6.1"
+peewee = "3.17.0"
+coloredlogs = "15.0.1"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
+
+[scripts]
+start = "python src/main.py"
