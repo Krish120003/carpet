@@ -16,7 +16,7 @@ logger.setLevel(level=logging.INFO)
 def handle_screenshot(image: QPixmap) -> None:
     current_time = datetime.now()
 
-    image_path = Path("data") / f"screenshot_{current_time}.png"
+    image_path = Path("data") / f"screenshot_{current_time}.jpeg"
 
     if not image_path.parent.exists():
         image_path.parent.mkdir()
@@ -24,7 +24,7 @@ def handle_screenshot(image: QPixmap) -> None:
     # create a capture
     with conn.atomic():
         # save the image
-        image.save(str(image_path))
+        image.save(str(image_path), format="jpeg", quality=30)
 
         capture = Capture.create(
             timestamp=current_time,
