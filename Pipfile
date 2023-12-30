@@ -7,6 +7,8 @@ name = "pypi"
 pyside6 = "6.6.1"
 peewee = "3.17.0"
 coloredlogs = "15.0.1"
+mypy = "*"
+types-peewee = "*"
 
 [dev-packages]
 
