@@ -3,11 +3,11 @@ from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PySide6.QtCore import QTimer, QObject
 
 import sys
+import os
+from pathlib import Path
 
 from utils import handle_screenshot
 
-import sys, os
-from pathlib import Path
 
 basedir = Path(os.path.dirname(__file__))
 
