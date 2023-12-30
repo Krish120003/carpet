@@ -36,13 +36,3 @@ def handle_screenshot(image: QPixmap) -> None:
         logger.info(f"Saved screenshot to {image_path.absolute()}")
 
     return
-
-
-def clean_db() -> None:
-    with conn.atomic():
-        Capture.delete().execute()
-        # delete all images stored in the data folder
-        for image in Path("data").glob("*.png"):
-            image.unlink()
-
-    return
