@@ -18,3 +18,5 @@ python_version = "3.10"
 
 [scripts]
 start = "python src/main.py"
+typecheck = "mypy src"
+
