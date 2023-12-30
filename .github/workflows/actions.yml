@@ -10,13 +10,13 @@ on:
 
 jobs:
   pr-lint:
-      name: Run PR Lint
-      runs-on: ubuntu-latest
-      steps:
-        - name: semantic-pull-request
-          uses: amannn/action-semantic-pull-request@v4.5.0
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    name: Run PR Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: semantic-pull-request
+        uses: amannn/action-semantic-pull-request@v4.5.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
@@ -24,18 +24,15 @@ jobs:
       matrix:
         python-version: ["3.10"]
     steps:
-    - uses: actions/checkout@v3
-    # - uses: chartboost/ruff-action@v1
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with:
-        command: install -d # Install all dependencies, including development ones
-    - name: Run mypy typechecker
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with:
-        command: run typecheck
-        
+      - uses: actions/checkout@v3
+      # - uses: chartboost/ruff-action@v1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pipenv
+        run: pip install pipenv
+      - name: Install dependencies
+        run: pipenv install --dev
+      - name: Run mypy typechecker
+        run: pipenv run typecheck
