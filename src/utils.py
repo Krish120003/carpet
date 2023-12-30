@@ -9,7 +9,7 @@ import coloredlogs
 coloredlogs.install()
 
 logging.basicConfig()
-logger = logging.getLogger()
+logger = logging.getLogger("screenshot handler")
 logger.setLevel(level=logging.INFO)
 
 
