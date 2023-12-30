@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['src/main.py'],
+    ["src/main.py"],
     pathex=[],
     binaries=[],
-    datas=[('icon.png', '.')],
+    datas=[("icon.png", ".")],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -20,7 +20,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='main',
+    name="Carpet",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -39,11 +39,11 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='main',
+    name="main",
 )
 app = BUNDLE(
     coll,
-    name='main.app',
+    name="Carpet.app",
     icon=None,
     bundle_identifier=None,
 )
