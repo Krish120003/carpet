@@ -9,6 +9,7 @@ peewee = "3.17.0"
 coloredlogs = "15.0.1"
 mypy = "*"
 types-peewee = "*"
+pyinstaller = "*"
 
 [dev-packages]
 
