@@ -6,6 +6,11 @@ import sys
 
 from utils import handle_screenshot
 
+import sys, os
+from pathlib import Path
+
+basedir = Path(os.path.dirname(__file__))
+
 
 class SystemApp(QObject):
     def __init__(self, app):
@@ -22,7 +27,7 @@ class SystemApp(QObject):
         self.is_active = True
 
     def init_system_tray(self):
-        icon = QIcon("icon.png")
+        icon = QIcon(str(basedir / "icon.png"))
 
         # Create the tray
         self.tray = QSystemTrayIcon()
