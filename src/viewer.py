@@ -1,10 +1,12 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSlider
-from PySide6.QtCore import Qt, Slot
+from PySide6.QtCore import Qt, Slot, Signal
 from PySide6.QtGui import QPixmap
 from utils import conn, Capture
 
 
 class Viewer(QWidget):
+    closed = Signal()
+
     def __init__(self):
         super().__init__()
 
@@ -65,3 +67,7 @@ class Viewer(QWidget):
 
         self.curr_img = QPixmap(capture.filepath)
         self.image_label.setPixmap(self.curr_img)
+
+    def closeEvent(self, event):
+        self.closed.emit()
+        event.accept()

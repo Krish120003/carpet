@@ -10,6 +10,17 @@ from pathlib import Path
 from utils import handle_screenshot
 from viewer import Viewer
 
+# setup logging
+import logging
+import coloredlogs
+
+coloredlogs.install()
+
+logging.basicConfig()
+
+logger = logging.getLogger()
+logger.setLevel(level=logging.INFO)
+
 basedir = Path(os.path.dirname(__file__)).parent
 
 
@@ -17,6 +28,7 @@ class SystemApp(QObject):
     def __init__(self, app):
         super().__init__()
         self.app = app
+        self.viewer = None
 
         self.init_system_tray()
 
@@ -75,8 +87,17 @@ class SystemApp(QObject):
 
     @Slot()
     def show_viewer(self):
-        self.viewer = Viewer()
+        if not self.viewer:
+            logger.info("Creating viewer window")
+            self.viewer = Viewer()
+            self.viewer.closed.connect(self.handle_viewer_close)
+
+        # if this viewer is the same, then we just focus it automatically
         self.viewer.show()
+
+    def handle_viewer_close(self):
+        self.viewer = None
+        logger.info("Viewer window closed")
 
     def capture_and_save_screenshot(self):
         screen = QApplication.primaryScreen()
