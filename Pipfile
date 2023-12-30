@@ -14,9 +14,9 @@ pyinstaller = "*"
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.10.*"
 
 [scripts]
 start = "python src/main.py"
 typecheck = "mypy src"
-build = "pyinstaller main.spec"
+build = "pyinstaller main.spec --clean --noconfirm"
