@@ -10,10 +10,10 @@ It's like Rewind.ai but local, cross platform and open source.
 - [x] Save screenshot to db and folder
 - [x] Make it a menu bar app
 - [x] Create a basic UI to view screenshots
-- [ ] Github CLI to build packages into installers
-- [ ] Compression
+- [ ] Github CI to build packages into installers
 - [ ] OCR!
 - [ ] Search through history based on text
+- [ ] Compression
 - [ ] context aware search
 - [ ] chatgpt etc
 - [ ] daily recap

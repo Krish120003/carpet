@@ -55,4 +55,4 @@ jobs:
       - name: Install dependencies
         run: pipenv install --dev
       - name: Build for macOS
-        run: pipenv run build
+        run: pipenv run build_osx
