@@ -1,3 +1,5 @@
+print("Loading Carpet")
+
 from PySide6.QtGui import QIcon, QAction
 from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PySide6.QtCore import QTimer, QObject, Slot
@@ -7,7 +9,7 @@ import sys
 import os
 from pathlib import Path
 
-from utils import handle_screenshot
+from utils import handle_screenshot, get_asset_path
 from viewer import Viewer
 
 # setup logging
@@ -21,7 +23,13 @@ logging.basicConfig()
 logger = logging.getLogger()
 logger.setLevel(level=logging.INFO)
 
-basedir = Path(os.getcwd())
+basedir = Path(os.path.dirname(__file__))
+
+assets_dir = get_asset_path(basedir)
+
+
+print("Base dir is", basedir)
+print("Current dir is", os.getcwd())
 
 
 class SystemApp(QObject):
@@ -40,7 +48,7 @@ class SystemApp(QObject):
         self.is_active = True
 
     def init_system_tray(self):
-        icon_path = basedir / "assets" / "icon.png"
+        icon_path = assets_dir / "icon.png"
         logging.info(f"Loading icon from {str(icon_path)}")
         icon = QIcon(str(icon_path))
 
@@ -108,6 +116,8 @@ class SystemApp(QObject):
 
 
 if __name__ == "__main__":
+    print("Launching Carpet")
+
     app = QApplication([])
     app.setQuitOnLastWindowClosed(False)
 

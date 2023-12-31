@@ -2,7 +2,7 @@ from PySide6.QtGui import QPixmap
 from pathlib import Path
 from db import Capture, conn
 from datetime import datetime
-
+import sys
 import logging
 import coloredlogs
 
@@ -36,3 +36,13 @@ def handle_screenshot(image: QPixmap) -> None:
         logger.info(f"Saved screenshot to {image_path.absolute()}")
 
     return
+
+
+def get_asset_path(basedir: Path) -> Path:
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        print("running in a PyInstaller bundle")
+        # check if on osx
+        if sys.platform == "darwin":
+            return basedir.parent / "Resources" / "assets"
+
+    return basedir.parent / "assets"
