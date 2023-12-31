@@ -9,7 +9,7 @@ It's like Rewind.ai but local, cross platform and open source.
 - [x] Take Screenshots every 2 seconds
 - [x] Save screenshot to db and folder
 - [x] Make it a menu bar app
-- [ ] Create a basic UI to view screenshots
+- [x] Create a basic UI to view screenshots
 - [ ] Github CLI to build packages into installers
 - [ ] Compression
 - [ ] OCR!

@@ -9,14 +9,14 @@ import coloredlogs
 coloredlogs.install()
 
 logging.basicConfig()
-logger = logging.getLogger()
+logger = logging.getLogger("screenshot handler")
 logger.setLevel(level=logging.INFO)
 
 
 def handle_screenshot(image: QPixmap) -> None:
     current_time = datetime.now()
 
-    image_path = Path("data") / f"screenshot_{current_time}.png"
+    image_path = Path("data") / f"screenshot_{current_time}.jpeg"
 
     if not image_path.parent.exists():
         image_path.parent.mkdir()
@@ -24,7 +24,7 @@ def handle_screenshot(image: QPixmap) -> None:
     # create a capture
     with conn.atomic():
         # save the image
-        image.save(str(image_path))
+        image.save(str(image_path), format="jpeg", quality=30)
 
         capture = Capture.create(
             timestamp=current_time,
@@ -34,15 +34,5 @@ def handle_screenshot(image: QPixmap) -> None:
         capture.save()
 
         logger.info(f"Saved screenshot to {image_path.absolute()}")
-
-    return
-
-
-def clean_db() -> None:
-    with conn.atomic():
-        Capture.delete().execute()
-        # delete all images stored in the data folder
-        for image in Path("data").glob("*.png"):
-            image.unlink()
 
     return

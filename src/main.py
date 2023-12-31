@@ -1,21 +1,34 @@
 from PySide6.QtGui import QIcon, QAction
 from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
-from PySide6.QtCore import QTimer, QObject
+from PySide6.QtCore import QTimer, QObject, Slot
+
 
 import sys
 import os
 from pathlib import Path
 
 from utils import handle_screenshot
+from viewer import Viewer
 
+# setup logging
+import logging
+import coloredlogs
 
-basedir = Path(os.path.dirname(__file__))
+coloredlogs.install()
+
+logging.basicConfig()
+
+logger = logging.getLogger()
+logger.setLevel(level=logging.INFO)
+
+basedir = Path(os.path.dirname(__file__)).parent
 
 
 class SystemApp(QObject):
     def __init__(self, app):
         super().__init__()
         self.app = app
+        self.viewer = None
 
         self.init_system_tray()
 
@@ -44,9 +57,7 @@ class SystemApp(QObject):
 
         self.view_screenshots_item = QAction("View Screenshots")
         self.menu.addAction(self.view_screenshots_item)
-        self.view_screenshots_item.triggered.connect(
-            lambda: print("Viewing screenshots")
-        )
+        self.view_screenshots_item.triggered.connect(self.show_viewer)
 
         self.pause_item = QAction("Pause")
         self.menu.addAction(self.pause_item)
@@ -62,6 +73,7 @@ class SystemApp(QObject):
 
         self.tray.show()
 
+    @Slot()
     def toggle_screenshotting(self):
         print("Pausing/Resuming")
         if self.is_active:
@@ -72,6 +84,20 @@ class SystemApp(QObject):
             self.pause_item.setText("Pause")
 
         self.is_active = not self.is_active
+
+    @Slot()
+    def show_viewer(self):
+        if not self.viewer:
+            logger.info("Creating viewer window")
+            self.viewer = Viewer()
+            self.viewer.closed.connect(self.handle_viewer_close)
+
+        # if this viewer is the same, then we just focus it automatically
+        self.viewer.show()
+
+    def handle_viewer_close(self):
+        self.viewer = None
+        logger.info("Viewer window closed")
 
     def capture_and_save_screenshot(self):
         screen = QApplication.primaryScreen()
