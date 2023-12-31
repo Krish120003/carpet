@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ["src/main.py"],
+    ["src/main.py", "src/db.py", "src/utils.py", "src/viewer.py"],
     pathex=[],
     binaries=[],
     datas=[("icon.png", ".")],
