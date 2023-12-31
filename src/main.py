@@ -21,7 +21,7 @@ logging.basicConfig()
 logger = logging.getLogger()
 logger.setLevel(level=logging.INFO)
 
-basedir = Path(os.path.dirname(__file__)).parent
+basedir = Path(os.getcwd())
 
 
 class SystemApp(QObject):
@@ -40,7 +40,9 @@ class SystemApp(QObject):
         self.is_active = True
 
     def init_system_tray(self):
-        icon = QIcon(str(basedir / "icon.png"))
+        icon_path = basedir / "assets" / "icon.png"
+        logging.info(f"Loading icon from {str(icon_path)}")
+        icon = QIcon(str(icon_path))
 
         # Create the tray
         self.tray = QSystemTrayIcon()
