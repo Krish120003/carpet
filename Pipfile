@@ -22,3 +22,5 @@ typecheck = "mypy src"
 build = "pyinstaller main.spec --clean --noconfirm"
 clean = "rm -rf build dist"
 reset = "rm -r carpetdb.sqlite3 data/"
+
+build_osx = "bash -c 'pipenv run build && ./scripts/build_dmg.sh'"
