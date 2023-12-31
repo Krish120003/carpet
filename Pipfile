@@ -19,7 +19,7 @@ python_version = "3.10"
 [scripts]
 start = "python src/main.py"
 typecheck = "mypy src"
-build = "pyinstaller main.spec --clean --noconfirm"
+build = "pyinstaller Carpet.spec --clean --noconfirm"
 clean = "rm -rf build dist"
 reset = "rm -r carpetdb.sqlite3 data/"
 

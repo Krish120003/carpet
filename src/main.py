@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 
 from utils import handle_screenshot, get_asset_path
+
 from viewer import Viewer
 
 # setup logging
@@ -25,7 +26,8 @@ logger.setLevel(level=logging.INFO)
 
 basedir = Path(os.path.dirname(__file__))
 
-assets_dir = get_asset_path(basedir)
+
+assets_dir = basedir / "assets"
 
 
 print("Base dir is", basedir)
