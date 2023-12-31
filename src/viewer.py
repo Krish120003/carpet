@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSlider
 from PySide6.QtCore import Qt, Slot, Signal
 from PySide6.QtGui import QPixmap
-from utils import conn, Capture
+from db import conn, Capture
 
 
 class Viewer(QWidget):
