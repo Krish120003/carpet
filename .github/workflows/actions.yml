@@ -58,3 +58,9 @@ jobs:
         run: pipenv install --dev
       - name: Build for macOS
         run: pipenv run build_osx
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: MacOS Build
+          path: dist/Carpet.dmg
+          retention-days: 5
