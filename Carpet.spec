@@ -2,11 +2,11 @@
 
 
 a = Analysis(
-    ["src/main.py", "src/db.py", "src/utils.py", "src/viewer.py"],
+    ['src/main.py'],
     pathex=[],
     binaries=[],
-    datas=[("assets/", "assets/")],
-    hiddenimports=[],
+    datas=[('assets/', 'assets/')],
+    hiddenimports=['peewee', 'coloredlogs'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -20,7 +20,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="Carpet",
+    name='Carpet',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -39,11 +39,11 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name="main",
+    name='Carpet',
 )
 app = BUNDLE(
     coll,
-    name="Carpet.app",
+    name='Carpet.app',
     icon=None,
     bundle_identifier=None,
 )

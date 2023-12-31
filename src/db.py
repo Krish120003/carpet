@@ -6,11 +6,20 @@ from peewee import (
     DateTimeField,
 )
 
+import peewee
+
 # from pathlib import Path
 # home_dir =
 
 # Create a database instance
-conn = SqliteDatabase("carpetdb.sqlite3")
+
+from pathlib import Path
+import os
+
+basedir = Path(os.path.dirname(__file__))
+db_path = basedir / "carpetdb.sqlite3"
+
+conn = SqliteDatabase(str(db_path))
 
 
 class BaseModel(Model):
@@ -37,8 +46,3 @@ conn.create_tables(
         Capture,
     ]
 )
-
-
-if __name__ == "__main__":
-    Capture.create(timestamp="2020-01-01 00:00:00", filepath="tes2t.png").save()
-    conn.close()
