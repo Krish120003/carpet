@@ -12,11 +12,13 @@ logging.basicConfig()
 logger = logging.getLogger("screenshot handler")
 logger.setLevel(level=logging.INFO)
 
+app_basedir = Path(__file__).parent
+
 
 def handle_screenshot(image: QPixmap) -> None:
     current_time = datetime.now()
 
-    image_path = Path("data") / f"screenshot_{current_time}.jpeg"
+    image_path = app_basedir / Path("data") / f"screenshot_{current_time}.jpeg"
 
     if not image_path.parent.exists():
         image_path.parent.mkdir()
