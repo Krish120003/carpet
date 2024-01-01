@@ -8,6 +8,7 @@ from PySide6.QtCore import QTimer, QObject, Slot
 import sys
 import os
 from pathlib import Path
+from db import init_db
 
 from utils import handle_screenshot, get_asset_path
 
@@ -119,6 +120,8 @@ class SystemApp(QObject):
 
 if __name__ == "__main__":
     print("Launching Carpet")
+
+    init_db()
 
     app = QApplication([])
     app.setQuitOnLastWindowClosed(False)
