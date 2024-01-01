@@ -42,7 +42,7 @@ def handle_screenshot(image: QPixmap) -> None:
 
 def get_asset_path(basedir: Path) -> Path:
     if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
-        print("running in a PyInstaller bundle")
+        logger.info("running in a PyInstaller bundle")
         # check if on osx
         if sys.platform == "darwin":
             return basedir.parent / "Resources" / "assets"
