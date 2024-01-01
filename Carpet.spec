@@ -45,5 +45,5 @@ app = BUNDLE(
     coll,
     name='Carpet.app',
     icon=None,
-    bundle_identifier=None,
+    bundle_identifier='com.krishkrish.carpet',
 )
