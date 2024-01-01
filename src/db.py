@@ -39,9 +39,10 @@ class Capture(BaseModel):
     filepath = TextField()  # screenshot filepath
 
 
-conn.connect()
-conn.create_tables(
-    [
-        Capture,
-    ]
-)
+def init_db():
+    conn.connect()
+    conn.create_tables(
+        [
+            Capture,
+        ]
+    )
