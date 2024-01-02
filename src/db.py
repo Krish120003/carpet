@@ -37,6 +37,7 @@ class Capture(BaseModel):
     cid = AutoField()
     timestamp = DateTimeField()
     filepath = TextField()  # screenshot filepath
+    text = TextField()  # ocr text
 
 
 def init_db():

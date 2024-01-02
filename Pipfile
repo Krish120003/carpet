@@ -10,6 +10,7 @@ coloredlogs = "15.0.1"
 mypy = "1.8.0"
 types-peewee = "3.17.0"
 pyinstaller = "6.3.0"
+ocrmac = "*"
 
 [dev-packages]
 
@@ -21,6 +22,5 @@ start = "python src/main.py"
 typecheck = "mypy src"
 build = "pyinstaller Carpet.spec --clean --noconfirm"
 clean = "rm -rf build dist"
-reset = "rm -r carpetdb.sqlite3 data/"
-
+reset = "rm -r src/carpetdb.sqlite3 src/data/"
 build_osx = "bash -c 'pipenv run build && ./scripts/build_dmg.sh'"

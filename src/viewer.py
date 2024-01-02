@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSlider
 from PySide6.QtCore import Qt, Slot, Signal
 from PySide6.QtGui import QPixmap
 from db import conn, Capture
+from utils import ocr
 
 
 class Viewer(QWidget):
@@ -50,6 +51,10 @@ class Viewer(QWidget):
         self.image_label.setFixedSize(800, 600)
         self.layout.addWidget(self.image_label)
 
+        # ocr text
+        # self.ocr_text = QLabel()
+        # self.layout.addWidget(self.ocr_text)
+
         self.curr_img = None
         self.update_image()
 
@@ -67,6 +72,8 @@ class Viewer(QWidget):
 
         self.curr_img = QPixmap(capture.filepath)
         self.image_label.setPixmap(self.curr_img)
+
+        # self.ocr_text.setText(capture.text)
 
     def closeEvent(self, event):
         self.closed.emit()
